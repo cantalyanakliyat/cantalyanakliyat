@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>Admin Panel | Cantalya Nakliyat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-:root{--primary:#0f4c75;--primary2:#3282b8;--wa:#25D366;--bg:#f4f6f8;--card:#fff;--muted:#64748b;}
+<style>:root{--primary:#0f4c75;--primary2:#3282b8;--wa:#25D366;--bg:#f4f6f8;--card:#fff;--muted:#64748b;}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#111}
 header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
@@ -26,22 +25,19 @@ header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:
 h2{margin:0 0 12px}
 .small{font-size:12px}
 .muted{color:var(--muted)}
-form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
-form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+input,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
+.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.row{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
+.danger{border-color:#fecaca;color:#991b1b}
+.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.gallery{grid-template-columns:1fr}}
 .media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
 iframe.media{object-fit:unset;background:#000}
 footer{padding:24px 12px;text-align:center;color:#64748b}
-.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:760px){.row{grid-template-columns:1fr}}
-.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
-.danger{border-color:#fecaca;color:#991b1b}
-.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
 </style>
 </head>
 <body>
@@ -63,16 +59,17 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
 <div class="hero">
   <div class="badge">Sadece senin için</div>
   <h1>Admin Panel</h1>
-  <p>Foto ekle, video için YouTube linki ekle, SEO alanlarını güncelle. (Ücretsiz sürüm: veriler tarayıcıda saklanır.)</p>
+  <p>Foto ekle, video için YouTube linki ekle, SEO alanlarını güncelle. (Şifre bu dosyanın içinde sabittir.)</p>
 </div>
 
 <div class="container">
   <div class="section" id="loginBox">
     <h2>Giriş</h2>
-    <p class="muted">İlk girişte şifre belirle. Sonraki girişlerde aynı şifreyle açılır.</p>
+    <p class="muted">Şifreyi girerek admin paneline erişebilirsiniz.</p>
     <input id="pw" placeholder="Şifre">
-    <button onclick="login()">Giriş Yap</button>
-    <p class="muted small">Not: Bu panel yerel çalışır. Canlı yayına geçersek gerçek (bulut) admin panel kuracağız.</p>
+    <button class="smallbtn" onclick="login()">Giriş Yap</button>
+    <p class="muted small"><b>Not:</b> Eski tarayıcı kayıtları sorun çıkarıyorsa aşağıdaki butonla sıfırlayın.</p>
+    <button class="smallbtn danger" onclick="hardReset()">Eski Kayıtları Sıfırla</button>
   </div>
 
   <div class="section" id="adminBox" style="display:none">
@@ -98,7 +95,6 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
     <hr class="hr">
 
     <h2>Çalışmalarımız – Medya</h2>
-
     <div class="notice">
       <b>Önemli:</b> Video dosyası yüklemek tarayıcı depolama sınırı yüzünden çoğu zaman başarısız olur.<br>
       En sağlam yöntem: videoyu YouTube’a yükle → linki buraya ekle.<br>
@@ -128,26 +124,37 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
 <footer>© 2026 Cantalya Nakliyat • Admin</footer>
 
 <script>
-function getSavedPw(){ return localStorage.getItem('cantalya_admin_pw') || ''; }
+// ✅ ŞİFRE DOSYANIN İÇİNE GÖMÜLÜ
+const FIXED_PASSWORD = "4e1ace7667";
+
+// ✅ Eski sürümden kalan localStorage anahtarları giriş bozmasın diye temizlik
+function hardReset(){
+  // önceki sürümlerde olabilecek anahtarları temizle
+  localStorage.removeItem('cantalya_admin_pw');
+  localStorage.removeItem('cantalya_admin_authed');
+  sessionStorage.removeItem('cantalya_admin_authed');
+  alert('Eski kayıtlar temizlendi. Sayfa yenilenecek.');
+  location.reload();
+}
 
 function login(){
-  const input = document.getElementById('pw').value || '';
-  const saved = getSavedPw();
-  if(!saved){
-    if(!input){ alert('Şifre yaz.'); return; }
-    localStorage.setItem('cantalya_admin_pw', input);
-  } else if(input !== saved){
+  const input = (document.getElementById('pw').value || '').trim();
+  if(input !== FIXED_PASSWORD){
     alert('Şifre yanlış.');
     return;
   }
-  localStorage.setItem('cantalya_admin_authed','1');
+  // sadece bu sekmede açık kalsın
+  sessionStorage.setItem('cantalya_admin_authed','1');
   document.getElementById('loginBox').style.display='none';
   document.getElementById('adminBox').style.display='block';
   loadSeo();
   renderPreview();
 }
 
-function logout(){ localStorage.removeItem('cantalya_admin_authed'); location.reload(); }
+function logout(){
+  sessionStorage.removeItem('cantalya_admin_authed');
+  location.reload();
+}
 
 function loadSeo(){
   const seo = JSON.parse(localStorage.getItem('cantalya_seo') || '{}');
@@ -162,7 +169,7 @@ function saveSeo(){
     keywords: document.getElementById('seo_keywords').value
   };
   localStorage.setItem('cantalya_seo', JSON.stringify(seo));
-  alert('SEO kaydedildi. (Yerel)');
+  alert('SEO kaydedildi.');
 }
 
 function getMedia(){ return JSON.parse(localStorage.getItem('cantalya_media') || '[]'); }
@@ -247,7 +254,11 @@ function renderPreview(){
 }
 
 (function init(){
-  if(localStorage.getItem('cantalya_admin_authed')==='1'){
+  // eski localStorage auth varsa temizle (önceki sürüm)
+  if(localStorage.getItem('cantalya_admin_authed')) {
+    localStorage.removeItem('cantalya_admin_authed');
+  }
+  if(sessionStorage.getItem('cantalya_admin_authed')==='1'){
     document.getElementById('loginBox').style.display='none';
     document.getElementById('adminBox').style.display='block';
     loadSeo();
@@ -255,5 +266,6 @@ function renderPreview(){
   }
 })();
 </script>
+
 </body>
 </html>
