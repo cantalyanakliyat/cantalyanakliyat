@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel | Cantalya Nakliyat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{--primary:#0f4c75;--primary2:#3282b8;--wa:#25D366;--bg:#f4f6f8;--card:#fff;--muted:#64748b;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#111}
+header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;gap:14px}
+.logo{font-weight:900;font-size:18px;color:var(--primary)}
+.nav a{text-decoration:none;color:#111;font-weight:800}
+.navlinks{list-style:none;display:flex;gap:16px;margin:0;padding:0;flex-wrap:wrap}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:64px 18px;text-align:center}
+.hero h1{font-size:38px;margin:0 0 10px}
+.hero p{font-size:18px;margin:0 auto 22px;max-width:760px;opacity:.95}
+.badge{display:inline-block;background:rgba(255,255,255,.18);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:10px}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:900}
+.btn-call{background:#fff;color:var(--primary)}
+.btn-wa{background:var(--wa);color:#fff}
+.container{max-width:1100px;margin:auto;padding:18px}
+.section{background:var(--card);margin:18px auto;max-width:980px;padding:26px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
+h2{margin:0 0 12px}
+.small{font-size:12px}
+.muted{color:var(--muted)}
+form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
+form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
+iframe.media{object-fit:unset;background:#000}
+footer{padding:24px 12px;text-align:center;color:#64748b}
+.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
+.danger{border-color:#fecaca;color:#991b1b}
+.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Cantalya Nakliyat</div>
+    <ul class="navlinks">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="calismalarimiz.html">Çalışmalarımız</a></li>
+      <li><a href="hizmetlerimiz.html">Hizmetlerimiz</a></li>
+      <li><a href="admin.html">Admin</a></li>
+      <li><a href="tel:+905415413289">Ara</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<div class="hero">
+  <div class="badge">Sadece senin için</div>
+  <h1>Admin Panel</h1>
+  <p>Foto ekle, video için YouTube linki ekle, SEO alanlarını güncelle. (Ücretsiz sürüm: veriler tarayıcıda saklanır.)</p>
+</div>
+
+<div class="container">
+  <div class="section" id="loginBox">
+    <h2>Giriş</h2>
+    <p class="muted">İlk girişte şifre belirle. Sonraki girişlerde aynı şifreyle açılır.</p>
+    <input id="pw" placeholder="Şifre">
+    <button onclick="login()">Giriş Yap</button>
+    <p class="muted small">Not: Bu panel yerel çalışır. Canlı yayına geçersek gerçek (bulut) admin panel kuracağız.</p>
+  </div>
+
+  <div class="section" id="adminBox" style="display:none">
+    <h2>SEO & İçerik</h2>
+    <div class="row">
+      <div>
+        <label class="small">Site Başlığı (Title)</label>
+        <input id="seo_title" placeholder="Antalya Evden Eve Nakliyat | Cantalya Nakliyat">
+      </div>
+      <div>
+        <label class="small">Açıklama (Description)</label>
+        <input id="seo_desc" placeholder="Antalya evden eve, şehirler arası, asansörlü taşıma...">
+      </div>
+    </div>
+    <label class="small">Anahtar Kelimeler (virgülle)</label>
+    <input id="seo_keywords" placeholder="antalya evden eve nakliyat, asansörlü taşıma, şehirler arası nakliyat">
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <button class="smallbtn" onclick="saveSeo()">SEO Kaydet</button>
+      <button class="smallbtn" onclick="logout()">Çıkış</button>
+    </div>
+
+    <hr class="hr">
+
+    <h2>Çalışmalarımız – Medya</h2>
+
+    <div class="notice">
+      <b>Önemli:</b> Video dosyası yüklemek tarayıcı depolama sınırı yüzünden çoğu zaman başarısız olur.<br>
+      En sağlam yöntem: videoyu YouTube’a yükle → linki buraya ekle.<br>
+      Fotoğraflar problemsiz eklenir.
+    </div>
+
+    <h3 style="margin-top:14px">1) Foto ekle</h3>
+    <input type="file" id="mediaFiles" multiple accept="image/*">
+    <button class="smallbtn" onclick="addSelectedImages()">Seçilen Fotoğrafları Ekle</button>
+
+    <h3 style="margin-top:18px">2) Video ekle (YouTube linki)</h3>
+    <input id="yt" placeholder="YouTube linki (ör: https://youtu.be/XXXX veya https://www.youtube.com/watch?v=XXXX)">
+    <button class="smallbtn" onclick="addYouTube()">YouTube Videosu Ekle</button>
+
+    <hr class="hr">
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="smallbtn danger" onclick="clearMedia()">Tüm Medyayı Sil</button>
+    </div>
+
+    <h3 style="margin-top:18px">Önizleme</h3>
+    <div id="preview" class="gallery"></div>
+    <p class="muted small">İpucu: Çalışmalarımız sayfasını açıp yenileyince eklediklerin görünür.</p>
+  </div>
+</div>
+
+<footer>© 2026 Cantalya Nakliyat • Admin</footer>
+
+<script>
+function getSavedPw(){ return localStorage.getItem('cantalya_admin_pw') || ''; }
+
+function login(){
+  const input = document.getElementById('pw').value || '';
+  const saved = getSavedPw();
+  if(!saved){
+    if(!input){ alert('Şifre yaz.'); return; }
+    localStorage.setItem('cantalya_admin_pw', input);
+  } else if(input !== saved){
+    alert('Şifre yanlış.');
+    return;
+  }
+  localStorage.setItem('cantalya_admin_authed','1');
+  document.getElementById('loginBox').style.display='none';
+  document.getElementById('adminBox').style.display='block';
+  loadSeo();
+  renderPreview();
+}
+
+function logout(){ localStorage.removeItem('cantalya_admin_authed'); location.reload(); }
+
+function loadSeo(){
+  const seo = JSON.parse(localStorage.getItem('cantalya_seo') || '{}');
+  document.getElementById('seo_title').value = seo.title || '';
+  document.getElementById('seo_desc').value = seo.desc || '';
+  document.getElementById('seo_keywords').value = seo.keywords || '';
+}
+function saveSeo(){
+  const seo = {
+    title: document.getElementById('seo_title').value,
+    desc: document.getElementById('seo_desc').value,
+    keywords: document.getElementById('seo_keywords').value
+  };
+  localStorage.setItem('cantalya_seo', JSON.stringify(seo));
+  alert('SEO kaydedildi. (Yerel)');
+}
+
+function getMedia(){ return JSON.parse(localStorage.getItem('cantalya_media') || '[]'); }
+function setMedia(items){ localStorage.setItem('cantalya_media', JSON.stringify(items)); }
+
+function addSelectedImages(){
+  const input = document.getElementById('mediaFiles');
+  const files = Array.from(input.files || []);
+  if(!files.length){ alert('Önce foto seç.'); return; }
+
+  const existing = getMedia();
+  const reads = files.map(file => new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve({ type:'image', src: reader.result, alt:'Cantalya Nakliyat çalışma' });
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  }));
+
+  Promise.all(reads).then(items=>{
+    try{
+      setMedia(existing.concat(items));
+      input.value = '';
+      renderPreview();
+      alert('Fotoğraflar eklendi. Çalışmalarımız sayfasını yenileyin.');
+    }catch(e){
+      alert('Kaydedilemedi: Tarayıcı depolama limiti dolu olabilir. Daha az foto eklemeyi deneyin.');
+    }
+  }).catch(()=> alert('Okuma hatası oluştu.'));
+}
+
+function addYouTube(){
+  const url = (document.getElementById('yt').value || '').trim();
+  if(!url){ alert('YouTube linki yapıştır.'); return; }
+  const existing = getMedia();
+  existing.unshift({ type:'youtube', src:url });
+  setMedia(existing);
+  document.getElementById('yt').value = '';
+  renderPreview();
+  alert('YouTube videosu eklendi. Çalışmalarımız sayfasını yenileyin.');
+}
+
+function clearMedia(){
+  if(!confirm('Tüm medya silinsin mi?')) return;
+  localStorage.removeItem('cantalya_media');
+  renderPreview();
+}
+
+function toYouTubeEmbed(url){
+  try{
+    if(!url) return '';
+    let id = '';
+    const u = new URL(url);
+    if(u.hostname.includes('youtu.be')) id = u.pathname.replace('/','');
+    if(u.hostname.includes('youtube.com')) id = u.searchParams.get('v') || '';
+    if(!id) return '';
+    return `https://www.youtube.com/embed/${id}`;
+  }catch(e){ return ''; }
+}
+
+function renderPreview(){
+  const data = getMedia();
+  const p = document.getElementById('preview');
+  p.innerHTML = '';
+  data.forEach(item=>{
+    let el;
+    if(item.type==='youtube'){
+      const src = toYouTubeEmbed(item.src);
+      if(!src) return;
+      el = document.createElement('iframe');
+      el.src = src;
+      el.className='media';
+      el.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      el.allowFullscreen = true;
+    }else{
+      el = document.createElement('img');
+      el.src = item.src;
+      el.alt = item.alt || '';
+      el.className='media';
+    }
+    p.appendChild(el);
+  });
+}
+
+(function init(){
+  if(localStorage.getItem('cantalya_admin_authed')==='1'){
+    document.getElementById('loginBox').style.display='none';
+    document.getElementById('adminBox').style.display='block';
+    loadSeo();
+    renderPreview();
+  }
+})();
+</script>
+</body>
+</html>

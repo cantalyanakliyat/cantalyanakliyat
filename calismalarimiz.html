@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Çalışmalarımız | Cantalya Nakliyat</title>
+<meta name="description" content="Cantalya Nakliyat çalışmalarımız: evden eve nakliyat, asansörlü taşıma ve şehirler arası taşıma örnekleri.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{--primary:#0f4c75;--primary2:#3282b8;--wa:#25D366;--bg:#f4f6f8;--card:#fff;--muted:#64748b;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#111}
+header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;gap:14px}
+.logo{font-weight:900;font-size:18px;color:var(--primary)}
+.nav a{text-decoration:none;color:#111;font-weight:800}
+.navlinks{list-style:none;display:flex;gap:16px;margin:0;padding:0;flex-wrap:wrap}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:64px 18px;text-align:center}
+.hero h1{font-size:38px;margin:0 0 10px}
+.hero p{font-size:18px;margin:0 auto 22px;max-width:760px;opacity:.95}
+.badge{display:inline-block;background:rgba(255,255,255,.18);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:10px}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:900}
+.btn-call{background:#fff;color:var(--primary)}
+.btn-wa{background:var(--wa);color:#fff}
+.container{max-width:1100px;margin:auto;padding:18px}
+.section{background:var(--card);margin:18px auto;max-width:980px;padding:26px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
+h2{margin:0 0 12px}
+.small{font-size:12px}
+.muted{color:var(--muted)}
+form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
+form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
+iframe.media{object-fit:unset;background:#000}
+footer{padding:24px 12px;text-align:center;color:#64748b}
+.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
+.danger{border-color:#fecaca;color:#991b1b}
+.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Cantalya Nakliyat</div>
+    <ul class="navlinks">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="calismalarimiz.html">Çalışmalarımız</a></li>
+      <li><a href="hizmetlerimiz.html">Hizmetlerimiz</a></li>
+      <li><a href="admin.html">Admin</a></li>
+      <li><a href="tel:+905415413289">Ara</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<div class="hero">
+  <div class="badge">Gerçek işlerden görüntüler</div>
+  <h1>Çalışmalarımız</h1>
+  <p>Ambalaj, yükleme, asansörlü taşıma ve teslimat anlarından seçmeler.</p>
+  <div class="buttons">
+    <a class="btn btn-wa" href="index.html#teklif">💬 Hemen Fiyat Al</a>
+    <a class="btn btn-call" href="tel:+905415413289">📞 Ara</a>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Galeri</h2>
+  <p class="muted">Admin panelinden foto ekleyebilir, video için YouTube linki ekleyebilirsiniz.</p>
+  <div id="gallery" class="gallery"></div>
+  <p id="empty" class="muted">Henüz medya eklenmedi. Admin panelinden ekleyebilirsiniz.</p>
+</div>
+
+<footer>© 2026 Cantalya Nakliyat • Antalya</footer>
+
+<script>
+function toYouTubeEmbed(url){
+  try{
+    if(!url) return '';
+    let id = '';
+    const u = new URL(url);
+    if(u.hostname.includes('youtu.be')) id = u.pathname.replace('/','');
+    if(u.hostname.includes('youtube.com')) id = u.searchParams.get('v') || '';
+    if(!id) return '';
+    return `https://www.youtube.com/embed/${id}`;
+  }catch(e){ return ''; }
+}
+
+function loadMedia(){
+  const data = JSON.parse(localStorage.getItem('cantalya_media') || '[]');
+  const g = document.getElementById('gallery');
+  const empty = document.getElementById('empty');
+  g.innerHTML = '';
+  if(!data.length){ empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  data.forEach(item=>{
+    let el;
+    if(item.type === 'youtube'){
+      const src = toYouTubeEmbed(item.src);
+      if(!src) return;
+      el = document.createElement('iframe');
+      el.src = src;
+      el.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      el.allowFullscreen = true;
+      el.className = 'media';
+    } else if(item.type === 'video'){
+      el = document.createElement('video');
+      el.controls = true;
+      el.src = item.src;
+      el.className = 'media';
+    } else {
+      el = document.createElement('img');
+      el.src = item.src;
+      el.alt = item.alt || 'Cantalya Nakliyat çalışma görseli';
+      el.className = 'media';
+    }
+    g.appendChild(el);
+  });
+}
+loadMedia();
+</script>
+</body>
+</html>

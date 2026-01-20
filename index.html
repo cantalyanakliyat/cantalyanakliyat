@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Cantalya Nakliyat | Antalya Evden Eve Nakliyat</title>
+<meta name="description" content="Antalya evden eve nakliyat, şehir içi ve şehirler arası taşımacılık. Asansörlü nakliye ve parça eşya taşıma. Hemen fiyat teklifi alın.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{--primary:#0f4c75;--primary2:#3282b8;--wa:#25D366;--bg:#f4f6f8;--card:#fff;--muted:#64748b;}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#111}
+header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;gap:14px}
+.logo{font-weight:900;font-size:18px;color:var(--primary)}
+.nav a{text-decoration:none;color:#111;font-weight:800}
+.navlinks{list-style:none;display:flex;gap:16px;margin:0;padding:0;flex-wrap:wrap}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:64px 18px;text-align:center}
+.hero h1{font-size:38px;margin:0 0 10px}
+.hero p{font-size:18px;margin:0 auto 22px;max-width:760px;opacity:.95}
+.badge{display:inline-block;background:rgba(255,255,255,.18);padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:10px}
+.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:900}
+.btn-call{background:#fff;color:var(--primary)}
+.btn-wa{background:var(--wa);color:#fff}
+.container{max-width:1100px;margin:auto;padding:18px}
+.section{background:var(--card);margin:18px auto;max-width:980px;padding:26px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
+h2{margin:0 0 12px}
+.small{font-size:12px}
+.muted{color:var(--muted)}
+form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
+form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
+iframe.media{object-fit:unset;background:#000}
+footer{padding:24px 12px;text-align:center;color:#64748b}
+.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
+.danger{border-color:#fecaca;color:#991b1b}
+.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Cantalya Nakliyat</div>
+    <ul class="navlinks">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="calismalarimiz.html">Çalışmalarımız</a></li>
+      <li><a href="hizmetlerimiz.html">Hizmetlerimiz</a></li>
+      <li><a href="admin.html">Admin</a></li>
+      <li><a href="tel:+905415413289">Ara</a></li>
+    </ul>
+  </div>
+</header>
+
+
+<div class="hero">
+  <div class="badge">Antalya • Hızlı dönüş • Güvenli taşıma</div>
+  <h1>Taşınmanın en güvenilir ve en kolay hali</h1>
+  <p>Evden eve nakliyat, şehir içi & şehirler arası taşıma, asansörlü nakliye ve parça eşya taşımacılığı. Formu doldurun, WhatsApp’tan hemen dönüş yapalım.</p>
+  <div class="buttons">
+    <a class="btn btn-call" href="tel:+905415413289">📞 Bizi Arayın</a>
+    <a class="btn btn-wa" href="#teklif">💬 Hemen Fiyat Al</a>
+  </div>
+</div>
+
+<div class="section" id="teklif">
+  <h2>Hızlı Fiyat Teklifi</h2>
+  <p class="muted">Bilgileri doldur → WhatsApp otomatik mesaj oluşturur → biz seni arayalım.</p>
+
+  <form onsubmit="sendWhatsApp(event)">
+    <div class="grid">
+      <div><label class="small">Nereden (İl / İlçe)</label><input id="from" placeholder="Antalya / Muratpaşa" required></div>
+      <div><label class="small">Nereye (İl / İlçe)</label><input id="to" placeholder="Antalya / Kepez veya İstanbul / Kadıköy" required></div>
+      <div><label class="small">Eşya Durumu</label>
+        <select id="room" required>
+          <option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option><option>5+1</option>
+          <option>Parça Eşya</option><option>Ofis</option><option>Diğer</option>
+        </select>
+      </div>
+      <div><label class="small">Asansörlü Taşıma</label><select id="elevator" required><option>Evet</option><option>Hayır</option></select></div>
+      <div><label class="small">Taşınma Tarihi</label><input id="date" type="date" required></div>
+      <div><label class="small">Tercih edilen saat</label>
+        <select id="time" required><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00 sonrası</option></select>
+      </div>
+      <div><label class="small">Ad Soyad</label><input id="name" placeholder="Adınız Soyadınız" required></div>
+      <div><label class="small">Telefon</label><input id="phone" placeholder="05xx xxx xx xx" required></div>
+    </div>
+
+    <label class="small">Not (isteğe bağlı)</label>
+    <textarea id="note" placeholder="Kat, asansör durumu, eşya hassasiyeti, park alanı vb."></textarea>
+
+    <button>WhatsApp’tan Teklif Al</button>
+    <p class="muted small" style="margin:10px 0 0">Bilgileriniz yalnızca iletişim ve teklif için kullanılır.</p>
+  </form>
+</div>
+
+<div class="section">
+  <h2>İletişim</h2>
+  <p><b>Telefon / WhatsApp:</b> +90 541 541 32 89</p>
+  <p><b>Adres:</b> Çankaya Mahallesi, Cem Karaca Caddesi No:42, Antalya</p>
+</div>
+
+<footer>© 2026 Cantalya Nakliyat • Antalya</footer>
+
+<script>
+const WA_NUMBER = "905415413289";
+function sendWhatsApp(e){
+  e.preventDefault();
+  const msg =
+`Merhaba Cantalya Nakliyat 👋
+Fiyat teklifi almak istiyorum.
+
+📦 Taşıma Bilgileri
+• Nereden: ${document.getElementById('from').value}
+• Nereye: ${document.getElementById('to').value}
+• Eşya: ${document.getElementById('room').value}
+• Asansörlü: ${document.getElementById('elevator').value}
+• Tarih: ${document.getElementById('date').value}
+• Saat: ${document.getElementById('time').value}
+
+👤 İletişim
+• Ad: ${document.getElementById('name').value}
+• Telefon: ${document.getElementById('phone').value}
+
+📝 Not:
+${document.getElementById('note').value || '-'}`;
+
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+</script>
+</body>
+</html>
