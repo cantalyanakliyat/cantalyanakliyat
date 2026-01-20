@@ -22,27 +22,10 @@ header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:
 .btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:900}
 .btn-call{background:#fff;color:var(--primary)}
 .btn-wa{background:var(--wa);color:#fff}
-.container{max-width:1100px;margin:auto;padding:18px}
 .section{background:var(--card);margin:18px auto;max-width:980px;padding:26px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
 h2{margin:0 0 12px}
-.small{font-size:12px}
 .muted{color:var(--muted)}
-form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #cbd5e1;font-size:14px}
-form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.gallery{grid-template-columns:1fr}}
-.media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
-iframe.media{object-fit:unset;background:#000}
 footer{padding:24px 12px;text-align:center;color:#64748b}
-.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:760px){.row{grid-template-columns:1fr}}
-.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
-.danger{border-color:#fecaca;color:#991b1b}
-.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
 </style>
 </head>
 <body>
@@ -60,46 +43,25 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
   </div>
 </header>
 
-
 <div class="hero">
   <div class="badge">Antalya • Hızlı dönüş • Güvenli taşıma</div>
   <h1>Taşınmanın en güvenilir ve en kolay hali</h1>
-  <p>Evden eve nakliyat, şehir içi & şehirler arası taşıma, asansörlü nakliye ve parça eşya taşımacılığı. Formu doldurun, WhatsApp’tan hemen dönüş yapalım.</p>
+  <p>Evden eve nakliyat, şehir içi & şehirler arası taşıma, asansörlü nakliye ve parça eşya taşımacılığı.</p>
   <div class="buttons">
     <a class="btn btn-call" href="tel:+905415413289">📞 Bizi Arayın</a>
-    <a class="btn btn-wa" href="#teklif">💬 Hemen Fiyat Al</a>
+    <a class="btn btn-wa" href="https://wa.me/905415413289">💬 WhatsApp</a>
   </div>
 </div>
 
-<div class="section" id="teklif">
-  <h2>Hızlı Fiyat Teklifi</h2>
-  <p class="muted">Bilgileri doldur → WhatsApp otomatik mesaj oluşturur → biz seni arayalım.</p>
-
-  <form onsubmit="sendWhatsApp(event)">
-    <div class="grid">
-      <div><label class="small">Nereden (İl / İlçe)</label><input id="from" placeholder="Antalya / Muratpaşa" required></div>
-      <div><label class="small">Nereye (İl / İlçe)</label><input id="to" placeholder="Antalya / Kepez veya İstanbul / Kadıköy" required></div>
-      <div><label class="small">Eşya Durumu</label>
-        <select id="room" required>
-          <option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option><option>5+1</option>
-          <option>Parça Eşya</option><option>Ofis</option><option>Diğer</option>
-        </select>
-      </div>
-      <div><label class="small">Asansörlü Taşıma</label><select id="elevator" required><option>Evet</option><option>Hayır</option></select></div>
-      <div><label class="small">Taşınma Tarihi</label><input id="date" type="date" required></div>
-      <div><label class="small">Tercih edilen saat</label>
-        <select id="time" required><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00 sonrası</option></select>
-      </div>
-      <div><label class="small">Ad Soyad</label><input id="name" placeholder="Adınız Soyadınız" required></div>
-      <div><label class="small">Telefon</label><input id="phone" placeholder="05xx xxx xx xx" required></div>
-    </div>
-
-    <label class="small">Not (isteğe bağlı)</label>
-    <textarea id="note" placeholder="Kat, asansör durumu, eşya hassasiyeti, park alanı vb."></textarea>
-
-    <button>WhatsApp’tan Teklif Al</button>
-    <p class="muted small" style="margin:10px 0 0">Bilgileriniz yalnızca iletişim ve teklif için kullanılır.</p>
-  </form>
+<div class="section">
+  <h2>Antalya Evden Eve Nakliyat – Cantalya Nakliyat</h2>
+  <p class="muted">
+    Cantalya Nakliyat olarak Antalya evden eve nakliyat alanında güvenilir ve profesyonel hizmet sunuyoruz.
+    Muratpaşa, Kepez, Konyaaltı, Aksu ve Döşemealtı başta olmak üzere Antalya genelinde şehir içi ve şehirler arası nakliyat yapıyoruz.
+  </p>
+  <p class="muted">
+    Asansörlü taşıma, parça eşya taşıma ve sigortalı evden eve nakliyat çözümlerimizle eşyalarınızı güvenle yeni adresinize ulaştırıyoruz.
+  </p>
 </div>
 
 <div class="section">
@@ -110,31 +72,5 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
 
 <footer>© 2026 Cantalya Nakliyat • Antalya</footer>
 
-<script>
-const WA_NUMBER = "905415413289";
-function sendWhatsApp(e){
-  e.preventDefault();
-  const msg =
-`Merhaba Cantalya Nakliyat 👋
-Fiyat teklifi almak istiyorum.
-
-📦 Taşıma Bilgileri
-• Nereden: ${document.getElementById('from').value}
-• Nereye: ${document.getElementById('to').value}
-• Eşya: ${document.getElementById('room').value}
-• Asansörlü: ${document.getElementById('elevator').value}
-• Tarih: ${document.getElementById('date').value}
-• Saat: ${document.getElementById('time').value}
-
-👤 İletişim
-• Ad: ${document.getElementById('name').value}
-• Telefon: ${document.getElementById('phone').value}
-
-📝 Not:
-${document.getElementById('note').value || '-'}`;
-
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
-}
-</script>
 </body>
 </html>
