@@ -22,6 +22,7 @@ header{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);position:sticky;top:
 .btn{display:inline-block;padding:14px 22px;border-radius:12px;text-decoration:none;font-weight:900}
 .btn-call{background:#fff;color:var(--primary)}
 .btn-wa{background:var(--wa);color:#fff}
+.container{max-width:1100px;margin:auto;padding:18px}
 .section{background:var(--card);margin:18px auto;max-width:980px;padding:26px;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
 h2{margin:0 0 12px}
 .small{font-size:12px}
@@ -30,7 +31,18 @@ form input,form select,form textarea{width:100%;padding:12px;margin:8px 0;border
 form button{width:100%;padding:14px;border:none;border-radius:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.media{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid #e2e8f0;background:#0b1220}
+iframe.media{object-fit:unset;background:#000}
 footer{padding:24px 12px;text-align:center;color:#64748b}
+.hr{border:none;border-top:1px solid #e2e8f0;margin:18px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+.smallbtn{padding:10px 14px;border-radius:10px;border:1px solid #e2e8f0;background:#fff;font-weight:900;cursor:pointer}
+.danger{border-color:#fecaca;color:#991b1b}
+.notice{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:12px}
 </style>
 </head>
 <body>
@@ -48,6 +60,7 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
   </div>
 </header>
 
+
 <div class="hero">
   <div class="badge">Antalya • Hızlı dönüş • Güvenli taşıma</div>
   <h1>Taşınmanın en güvenilir ve en kolay hali</h1>
@@ -58,7 +71,6 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
   </div>
 </div>
 
-<!-- ✅ TEKLİF FORMU (GERİ GELDİ) -->
 <div class="section" id="teklif">
   <h2>Hızlı Fiyat Teklifi</h2>
   <p class="muted">Bilgileri doldur → WhatsApp otomatik mesaj oluşturur → biz seni arayalım.</p>
@@ -67,28 +79,17 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
     <div class="grid">
       <div><label class="small">Nereden (İl / İlçe)</label><input id="from" placeholder="Antalya / Muratpaşa" required></div>
       <div><label class="small">Nereye (İl / İlçe)</label><input id="to" placeholder="Antalya / Kepez veya İstanbul / Kadıköy" required></div>
-
       <div><label class="small">Eşya Durumu</label>
         <select id="room" required>
           <option>1+1</option><option>2+1</option><option>3+1</option><option>4+1</option><option>5+1</option>
           <option>Parça Eşya</option><option>Ofis</option><option>Diğer</option>
         </select>
       </div>
-
-      <div><label class="small">Asansörlü Taşıma</label>
-        <select id="elevator" required>
-          <option>Evet</option><option>Hayır</option>
-        </select>
-      </div>
-
+      <div><label class="small">Asansörlü Taşıma</label><select id="elevator" required><option>Evet</option><option>Hayır</option></select></div>
       <div><label class="small">Taşınma Tarihi</label><input id="date" type="date" required></div>
-
       <div><label class="small">Tercih edilen saat</label>
-        <select id="time" required>
-          <option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00 sonrası</option>
-        </select>
+        <select id="time" required><option>09:00–12:00</option><option>12:00–15:00</option><option>15:00–18:00</option><option>18:00 sonrası</option></select>
       </div>
-
       <div><label class="small">Ad Soyad</label><input id="name" placeholder="Adınız Soyadınız" required></div>
       <div><label class="small">Telefon</label><input id="phone" placeholder="05xx xxx xx xx" required></div>
     </div>
@@ -99,28 +100,6 @@ footer{padding:24px 12px;text-align:center;color:#64748b}
     <button>WhatsApp’tan Teklif Al</button>
     <p class="muted small" style="margin:10px 0 0">Bilgileriniz yalnızca iletişim ve teklif için kullanılır.</p>
   </form>
-</div>
-
-<!-- ✅ SEO BÖLÜMÜ (KALIYOR) -->
-<div class="section" id="seo-antalya">
-  <h2>Antalya Evden Eve Nakliyat – Cantalya Nakliyat</h2>
-
-  <p class="muted">
-    Cantalya Nakliyat olarak <b>Antalya evden eve nakliyat</b> alanında profesyonel, güvenilir ve hızlı çözümler sunuyoruz.
-    Muratpaşa, Kepez, Konyaaltı, Aksu ve Döşemealtı başta olmak üzere Antalya’nın tüm ilçelerinde
-    <b>şehir içi</b> ve <b>şehirler arası nakliyat</b> hizmeti veriyoruz.
-  </p>
-
-  <p class="muted">
-    Deneyimli ekibimiz, eşyalarınızı özenle ambalajlayarak <b>asansörlü taşıma</b> sistemleriyle güvenli şekilde taşır.
-    Evden eve taşıma, parça eşya taşıma ve şehirler arası nakliyat süreçlerinde zamanında teslimat ve müşteri memnuniyetini
-    ön planda tutuyoruz.
-  </p>
-
-  <p class="muted">
-    Antalya’da güvenilir bir nakliyat firması arıyorsanız, <b>Cantalya Nakliyat</b> ile hemen iletişime geçebilir,
-    hızlı fiyat teklifi alabilirsiniz.
-  </p>
 </div>
 
 <div class="section">
@@ -157,6 +136,5 @@ ${document.getElementById('note').value || '-'}`;
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 </script>
-
 </body>
 </html>
